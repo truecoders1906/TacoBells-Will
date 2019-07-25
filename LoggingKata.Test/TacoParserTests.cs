@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using System.Collections.Generic;
 
 namespace LoggingKata.Test
 {
@@ -8,14 +9,21 @@ namespace LoggingKata.Test
         [Fact]
         public void ShouldDoSomething()
         {
-            // TODO: Complete Something, if anything
+            Console.WriteLine("Hello, World!");
         }
 
         [Theory]
-        [InlineData("Example")]
-        public void ShouldParse(string str)
+        [InlineData("34.073638, -84.677017, Taco Bell Acwort")]
+        public void ShouldParse(string str, string expected)
         {
-            // TODO: Complete Should Parse
+            // Arrange
+            TacoParserTests TacoParser = new TacoParserTests();
+
+            // Act
+            double answer = double.Parse(str);
+
+            // Assert
+            Assert.NotNull(answer);
         }
 
         [Theory]
@@ -23,7 +31,10 @@ namespace LoggingKata.Test
         [InlineData("")]
         public void ShouldFailParse(string str)
         {
-            // TODO: Complete Should Fail Parse
+            if (str == null || str == "")
+            {
+                str = null;
+            }
         }
     }
 }
