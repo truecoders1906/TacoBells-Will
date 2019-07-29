@@ -16,7 +16,6 @@
             }
                 logger.LogInfo("Begin parsing");
 
-
             TacoBell newTacoBell = new TacoBell();
             {
                 double Latitude = double.Parse(cells[0]);

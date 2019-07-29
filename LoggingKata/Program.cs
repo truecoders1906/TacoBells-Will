@@ -12,39 +12,37 @@ namespace LoggingKata
 
         static void Main(string[] args)
         {
+            //Mysterious logger stuff + lines variable
             logger.LogInfo("Log initialized");
-
             var lines = File.ReadAllLines(csvPath);
-
             logger.LogInfo($"Lines: {lines[0]}");
 
+            //For loop variables
             var parser = new TacoParser();
-
             var locations = lines.Select(parser.Parse).ToArray();
-
             double distanceBetweenTacobells = 0;
-            ITrackable foleyALTacoBell = null;
-            ITrackable blueRidgeALTacoBell = null;
+            ITrackable TacoBellA = null;
+            ITrackable TacoBellB = null;
 
             for (int a = 0; a < locations.Length; a++)
-            {
+            {   // Goes through the .csv string to find the Longitude + Latitude for the 1st Taco Bell
                 ITrackable locA = locations[a];
                 GeoCoordinate corA = new GeoCoordinate(locA.Location.Latitude, locA.Location.Longitude);
                 for (int b = 0; b < locations.Length; b++)
-                {
+                {   // Goes through the .csv string to find the Longitude + Latitude for the 2nd Taco Bell
                     ITrackable locB = locations[b];
                     GeoCoordinate corB = new GeoCoordinate(locB.Location.Latitude, locB.Location.Longitude);
-                    if (corA.GetDistanceTo(corB) > distanceBetweenTacobells)
-                    {
+                    if (corA.GetDistanceTo(corB) >= distanceBetweenTacobells)
+                    {   // Checks the distance between the two Taco Bells 
                         distanceBetweenTacobells = corA.GetDistanceTo(corB);
-                        foleyALTacoBell = locA;
-                        blueRidgeALTacoBell = locB;
+                        TacoBellA = locA;
+                        TacoBellB = locB;
                     }
+
                 }
             }
-            Console.WriteLine(foleyALTacoBell.Name);
-            Console.WriteLine(blueRidgeALTacoBell.Name);
-            Console.ReadLine();
+            Console.WriteLine(TacoBellA.Name);
+            Console.WriteLine(TacoBellB.Name); 
         }
     }
 }

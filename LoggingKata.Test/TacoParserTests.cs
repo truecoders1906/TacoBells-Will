@@ -8,7 +8,7 @@ namespace LoggingKata.Test
     {
         [Fact]
         public void ShouldDoSomething()
-        {
+        { 
             Console.WriteLine("Hello Chip!");
         }
 
