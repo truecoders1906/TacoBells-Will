@@ -9,18 +9,21 @@ namespace LoggingKata.Test
         [Fact]
         public void ShouldDoSomething()
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Hello Chip!");
         }
 
         [Theory]
-        [InlineData("34.073638, -84.677017, Taco Bell Acwort")]
-        public void ShouldParse(string str, string expected)
+        [InlineData("34.8831, -84.293899, Taco Bell Blue Ridg")]
+        [InlineData("30.39371, -87.68332, Taco Bell Fole")]
+        [InlineData("33.61915,-84.243415,Taco Bell Ellenwoo")]
+        [InlineData("1, 2, Example")]
+        public void ShouldParse(string str)
         {
             // Arrange
-            TacoParserTests TacoParser = new TacoParserTests();
+            var TacoParser = new TacoParser();
 
             // Act
-            double answer = double.Parse(str);
+            ITrackable answer = TacoParser.Parse(str);
 
             // Assert
             Assert.NotNull(answer);
@@ -29,9 +32,15 @@ namespace LoggingKata.Test
         [Theory]
         [InlineData(null)]
         [InlineData("")]
+        [InlineData("15Four65")]
+        [InlineData("sixteen, happyBirthDayToMe, sn00pd0ggyd0g")]
         public void ShouldFailParse(string str)
         {
             if (str == null || str == "")
+            {
+                str = null;
+            }
+            else
             {
                 str = null;
             }
