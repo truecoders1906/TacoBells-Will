@@ -32,13 +32,13 @@ namespace LoggingKata
                 {   // Goes through the .csv string to find the Longitude + Latitude for the 2nd Taco Bell
                     ITrackable locB = locations[b];
                     GeoCoordinate corB = new GeoCoordinate(locB.Location.Latitude, locB.Location.Longitude);
-                    if (corA.GetDistanceTo(corB) >= distanceBetweenTacobells)
-                    {   // Checks the distance between the two Taco Bells 
+                    double currentDistance = corA.GetDistanceTo(corB);
+                    if (currentDistance >= distanceBetweenTacobells)
+                    {
                         distanceBetweenTacobells = corA.GetDistanceTo(corB);
                         TacoBellA = locA;
                         TacoBellB = locB;
                     }
-
                 }
             }
             Console.WriteLine(TacoBellA.Name);

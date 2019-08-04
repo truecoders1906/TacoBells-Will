@@ -9,7 +9,7 @@ namespace LoggingKata.Test
         [Fact]
         public void ShouldDoSomething()
         { 
-            Console.WriteLine("Hello Chip!");
+            Console.WriteLine("Hello Chip! I'm not getting rid of this lol");
         }
 
         [Theory]
@@ -27,23 +27,30 @@ namespace LoggingKata.Test
 
             // Assert
             Assert.NotNull(answer);
-        }
-
+        }     
         [Theory]
-        [InlineData(null)]
         [InlineData("")]
+        [InlineData(null)]
         [InlineData("15Four65")]
         [InlineData("sixteen, happyBirthDayToMe, sn00pd0ggyd0g")]
+        [InlineData("10, ten, Taco Bell")]
+        [InlineData("ten, 10, Taco Bell")]
+        [InlineData("10, 10")]
+        [InlineData("10,,Taco Bell")]
+        [InlineData(",10, Taco Bell")]
+        [InlineData(", , Taco Bell")]
+        [InlineData("10, Taco Bell, 10")]
+        [InlineData("Taco Bell, 10, 10")]
         public void ShouldFailParse(string str)
         {
-            if (str == null || str == "")
-            {
-                str = null;
-            }
-            else
-            {
-                str = null;
-            }
+            // Arrange
+            TacoParser tacoParser = new TacoParser();
+
+            // Act
+            ITrackable answer = tacoParser.Parse(str);
+                      
+            // Assert
+            Assert.Null(answer);
         }
     }
 }
