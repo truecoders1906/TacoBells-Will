@@ -20,13 +20,11 @@
             }
             logger.LogInfo("Begin parsing");
             TacoBell newTacoBell = new TacoBell();
-            double Latitude;
-            double Longitude;
-            string string_Latitude = cells[0];
-            string string_Longitude = cells[1];
+            string stringLatitude = cells[0];
+            string stringLongitude = cells[1];
             newTacoBell.Name = cells[2];
-            bool latitiude_string_to_double = double.TryParse(string_Latitude, out Latitude);
-            bool longitude_string_to_double = double.TryParse(string_Longitude, out Longitude);
+            bool latitiude_string_to_double = double.TryParse(string_Latitude, out double Latitude);
+            bool longitude_string_to_double = double.TryParse(string_Longitude, out double Longitude);
             if (longitude_string_to_double == false || latitiude_string_to_double == false)
             {
                 return null;
