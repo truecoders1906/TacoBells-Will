@@ -35,7 +35,6 @@ namespace LoggingKata
                     double currentDistance = corA.GetDistanceTo(corB);
                     if (currentDistance >= distanceBetweenTacobells)
                     {
-                        distanceBetweenTacobells = corA.GetDistanceTo(corB);
                         TacoBellA = locA;
                         TacoBellB = locB;
                     }
